@@ -17,14 +17,19 @@ class Presupuesto {
         this.restante =  Number(presupuesto);
         this.gastos = []
     }
-
 }
- 
 
 
 class UI {
-
+    insertarPresupuesto ( cantidad ) {
+        const {presupuesto , restante} = cantidad //!destructuring
+        document.querySelector('#total').textContent = presupuesto;
+        document.querySelector('#restante').textContent = restante;
+    }
 }
+
+//Instacnias   
+const ui = new UI();
 
 let presupuesto;
 
@@ -33,13 +38,13 @@ let presupuesto;
 function preguntarPresupuesto() {
     const presupuestoUsuario = prompt('Cual es tu presupuesto', 0);
     
-    
     if ( presupuestoUsuario === '' ||  presupuestoUsuario === null || isNaN(presupuestoUsuario) ||  presupuestoUsuario <= 0 ) {
         window.location.reload();
     } 
 
     // Presupuesto valido
     presupuesto = new Presupuesto(presupuestoUsuario);
-    console.log(presupuesto);
+
+    ui.insertarPresupuesto( presupuesto );
 }
 
